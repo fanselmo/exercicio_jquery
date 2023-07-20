@@ -1,44 +1,24 @@
-const form = document.getElementById('form-taskList');
-const tasks = []
+$(document).ready(function() {
+    
+    $('form').on('submit', (e) => {
+        e.preventDefault();
 
-let linhas = ''
+        const newTask = $('#inputTask').val()
+        
+        const newItem = $('<li></li>')
 
-form.addEventListener('submit', function(e) {
-    e.preventDefault()
+        $(`<label> ${newTask} </label>`).appendTo(newItem)
 
-    adicionaLinha()
-    atualizaTabela ()
+        $(newItem).appendTo('ul')
+        
+        $(newItem).click(function () { 
+            if ($(this).css('text-decoration', 'line-through')) {
+                
+            } else {
+                $(this).css('text-decoration', 'none')
+            }
+        })
 
+        $('#inputTask').val('')
+    })
 })
-
-function adicionaLinha() {
-    const inputTasks = document.getElementById('inputTask')
-    tasks.push(inputTasks.value)
-
-    let linha = '<tr>'
-    linha += `<td>${inputTasks.value}</td>`
-
-    linhas += linha
-
-    inputTasks.value = ''
-}
-
-function atualizaTabela() {
-const corpoTabela = document.querySelector('tbody')
-corpoTabela.innerHTML = linhas
-}
-
-function addlinethrough()
-{
-    tabelinha.style.textDecoration = "line-through"
-}
-
-function clearline()
-{
-    tabelinha.style.textDecoration = "none"
-}
-
-
-$('')
-
-
